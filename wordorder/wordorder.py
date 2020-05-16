@@ -2,9 +2,21 @@
 
 class WordOrder:
     """
-        Clase de palabras ordenadas, se encarga de recibir un archivo leerlo y 
-        identificar cuales palabras estan repetidas y cuales no, una vez identificado esto
-        se procede a escribir un archivo de salida con dicha información.
+        Orden de palabras
+        Se le da un archivo de texto con el siguiente formato:
+
+        4
+        abcabcdefg abc bcdefg
+
+        La primera línea contiene el número de palabras (n) que tiene el archivo. Las próximasnlíneas contienen palabras (1 por línea), las cuales se pueden repetir a lo largo del archivo. Desarrolle un código que lea la información de dicho archivo de texto, y genere otro archivo de texto con lo siguiente:
+
+            ◦ En la primera línea debe mostrar el número de palabras distintivas.
+            ◦ Enlasegundalíneamostrarelnúmerodeocurrenciasdecada palabra distintiva.
+
+        Para el ejemplo anterior, el formato del archivo final es el siguiente:
+
+        3
+        2 1 1
     """
 
     file_url = ""

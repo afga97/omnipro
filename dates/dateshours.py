@@ -4,24 +4,6 @@ import pytz
 import holidays as pyholidays
 import businesstimedelta
 
-# d = datetime.now()
-# timezone = pytz.timezone("America/Los_Angeles")
-# d_aware = timezone.localize(d)
-# print(d_aware.tzinfo)
-
-# date_initial_utc_1 = pytz.localize(date_initial_1) 
-# date_initial_1 = date_initial_utc_1.astimezone(pytz.timezone('America/Bogota'))
-
-# date_end_utc_1 = pytz.localize(date_end_1) 
-# date_end_1 = date_end_utc_1.astimezone(pytz.timezone('America/Bogota')) America/Bogota
-
-# seconds = 3601
-# minutes = int(seconds / 60)
-# seconds = seconds - minutes * 60
-# hours = int(minutes / 60)
-# minutes = minutes - hours * 60
-# days = int(hours / 24)
-
 class DateHours:
     """
         Fechas y Horas
@@ -55,6 +37,10 @@ class DateHours:
             self.date_end = time_zone_2.localize(date_end)
 
     def number_days(self):
+        """
+            Imprimir el número de días Lunes, Martes, Miércoles, Jueves, 
+            Viernes, Sábados y Domingos que hay entre estas fechas. Asuma misma zona horaria.
+        """
         days_week = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
         count_days = [0, 0, 0, 0, 0, 0, 0]
         date_initial_copy = self.date_initial
@@ -65,6 +51,10 @@ class DateHours:
         return dict(zip(days_week, count_days))
     
     def work_hours(self):
+        """
+            Imprimir el número de horas laborales entre ese rango de fechas (no tomar en cuenta 
+            días feriados, asumir jornada de 8hr/día, Lunes-Viernes). Asuma misma zona horaria.
+        """
         co_holidays = pyholidays.CountryHoliday('CO', prov=None, state=None)
         holidays = businesstimedelta.HolidayRule(co_holidays)
         workday = businesstimedelta.WorkDayRule(
@@ -79,11 +69,16 @@ class DateHours:
         return h
 
     def difference_dates(self):
+        """
+            Imprimir la diferencia entre las fechas (asuma misma zona horaria) en:
+            ▪ Segundos
+            ▪ Horas
+            ▪ Días
+        """
         difference = self.date_end - self.date_initial
         seconds = int(difference.total_seconds())
         days = seconds // 86400
-        hours = (seconds - (days * 86400)) // 3600
-        # minutes = (seconds - (days * 86400) - (hours * 3600) / 60)
+        hours = (seconds - (days * 86400)) // 3600        
         seconds = (seconds - (days * 86400) - ( hours * 3600 ))
         return { 'days': days, 'hours': hours, 'seconds': seconds }        
 

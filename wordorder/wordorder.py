@@ -21,7 +21,7 @@ class WordOrder:
 
     file_url = ""
     file = None
-    output_file = "wordorder/output_file.txt"
+    output_file = "output_file.txt"
     data_output_file = {}
 
     def __init__(self, file):
@@ -90,5 +90,5 @@ class WordOrder:
         except Exception as e:
             print(e)
 
-instance_word_order = WordOrder('wordorder/input_file.txt')
+instance_word_order = WordOrder('input_file.txt')
 instance_word_order.main()
